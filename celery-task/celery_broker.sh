@@ -5,4 +5,4 @@
 #sudo apt-get install rabbitmq-server
 #sudo apt-get remove  python-librabbitmq 
 
-sudo  rabbitmq-server #-detached  #daemon
+rabbitmq-server -detached  #daemon
