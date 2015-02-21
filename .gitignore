@@ -1,0 +1,5 @@
+venv
+*.pyc
+.c9
+db
+celerybeat-schedule
