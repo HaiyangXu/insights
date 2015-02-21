@@ -50,7 +50,7 @@ def nginx():
         
 def gunicorn():
     with cd(project_dir):
-        sudo('supervisorctl start insights')
+        sudo('supervisorctl start insights -c supervisord.conf')
         
 def github(message='commit with fabric'):
     with lcd(os.path.join(os.path.abspath('.'), '.')):
@@ -60,15 +60,15 @@ def github(message='commit with fabric'):
         
 def celery_broker():
     with cd(project_dir):
-        sudo('supervisorctl start celerybroker')
+        sudo('supervisorctl start celerybroker  -c supervisord.conf')
         
 def celery_worker():
      with cd(project_dir):
-        sudo('supervisorctl start celeryworker')
+        sudo('supervisorctl start celeryworker  -c supervisord.conf')
         
 def celery_monitor():
      with cd(project_dir):
-        sudo('supervisorctl start celerymonitor')
+        sudo('supervisorctl start celerymonitor  -c supervisord.conf')
         
 def celery():
     celery_broker()
