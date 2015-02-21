@@ -44,7 +44,7 @@ def celery_worker():
         run('sh celery-task/celery_worker.sh')
         
 def celery_monitor():
-     with cd(project_dir):
+     with cd(project_dir+'/celery-task'):
         run('sh celery-task/celery_monitor.sh')
         
 def celery():
