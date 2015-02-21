@@ -3,3 +3,4 @@ venv
 .c9
 db
 celerybeat-schedule
+*.pem
