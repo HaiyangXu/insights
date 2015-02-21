@@ -60,15 +60,15 @@ def github(message='commit with fabric'):
         
 def celery_broker():
     with cd(project_dir):
-        sudo('supervisorctl start celerybroker  -c supervisord.conf')
+        sudo('supervisorctl start celerybroker')
         
 def celery_worker():
      with cd(project_dir):
-        sudo('supervisorctl start celeryworker  -c supervisord.conf')
+        sudo('supervisorctl start celeryworker')
         
 def celery_monitor():
      with cd(project_dir):
-        sudo('supervisorctl start celerymonitor  -c supervisord.conf')
+        sudo('supervisorctl start celerymonitor')
         
 def celery():
     celery_broker()
@@ -77,6 +77,10 @@ def celery():
     
       
 def deploy():
+    with cd('/etc/supervisor/conf.d/'):
+        sudo('ln -s -f  ~/insights/supervisord.conf ')
+        sudo('supervisorctl reload')
+        
     git()
     nginx()
     gunicorn()
