@@ -8,9 +8,9 @@ env.hosts=['aws.codeidea.cn']
 #env.key_filename = "~/.ssh/id_rsa"
 env.key_filename = './amazon.pem'
 
-def ls():
-    print(green("I'm local ~/"))
-    with cd('~/'):
+def ls(directory='~/'):
+    print(green("I'm local {0}".format(directory)))
+    with cd('{0}'.format(directory)):
         run('ls -l')
 def git():
     with cd('~/insights'):
@@ -21,10 +21,10 @@ def nginx():
         sudo('ln -s -f  ~/insights/deploy/nginx.conf ')
         sudo('/etc/init.d/nginx reload')
         
-def github():
+def github(message='commit with fabric'):
     with lcd(os.path.join(os.path.abspath('.'), '..')):
         local('git add -A')
-        local('git commit -m "commit with fabric" ')
+        local('git commit -m "{0}" '.format(message))
         local('git push origin master')
         
         
