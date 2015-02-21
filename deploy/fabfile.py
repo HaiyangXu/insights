@@ -27,13 +27,6 @@ def github(message='commit with fabric'):
         local('git commit -m "{0}" '.format(message))
         local('git push origin master')
         
-        
-def put_path():
-    print(green("I'm put local's test file to 10 and 12"))
-    put('/home/apps/test','/home/apps/')
-    print(yellow("I'm 10 or 12 /home/apps/"))
-    with cd('/home/apps'):
-        run('ls -l')
 def deploy():
-    execute(ls_path)
-    execute(put_path)
+    execute(git)
+    execute(nginx)
