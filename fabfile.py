@@ -50,7 +50,7 @@ def nginx():
         
 def gunicorn():
     with cd(project_dir):
-        sudo('supervisorctl start insights -c supervisord.conf')
+        sudo('supervisorctl start insights')
         
 def github(message='commit with fabric'):
     with lcd(os.path.join(os.path.abspath('.'), '.')):
@@ -77,10 +77,6 @@ def celery():
     
       
 def deploy():
-    with cd('/etc/supervisor/conf.d/'):
-        sudo('ln -s -f  ~/insights/supervisord.conf ')
-        sudo('supervisorctl reload')
-        
     git()
     nginx()
     gunicorn()
