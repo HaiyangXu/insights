@@ -14,6 +14,7 @@ def ls(directory='~/'):
         run('ls -l')
 def git():
     with cd(project_dir):
+        run('git reset --hard')
         run('git pull')
         
 def nginx():
@@ -34,18 +35,18 @@ def github(message='commit with fabric'):
 def celery_broker():
     with cd(project_dir):
         try:
-            run('sh celery-task/celery_broker.sh')
+            run('sh celery-task/broker.sh')
         except Exception, e:
             pass
         
         
 def celery_worker():
-     with cd(project_dir):
-        run('sh celery-task/celery_worker.sh')
+     with cd(project_dir+'/celery-task'):
+        run('sh celery-task/worker.sh')
         
 def celery_monitor():
-     with cd(project_dir+'/celery-task'):
-        run('sh celery-task/celery_monitor.sh')
+     with cd(project_dir):
+        run('sh celery-task/monitor.sh')
         
 def celery():
     execute(celery_broker)
