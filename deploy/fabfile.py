@@ -8,6 +8,11 @@ env.hosts=['aws.codeidea.cn']
 #env.key_filename = "~/.ssh/id_rsa"
 env.key_filename = './amazon.pem'
 project_dir='~/insights'
+
+
+def cmd(commd):
+    run(commd)
+    
 def ls(directory='~/'):
     print(green("I'm local {0}".format(directory)))
     with cd('{0}'.format(directory)):
@@ -42,7 +47,7 @@ def celery_broker():
         
 def celery_worker():
      with cd(project_dir+'/celery-task'):
-        run('bash worker.sh')
+        sudo('cat worker.sh |bash')
         
 def celery_monitor():
      with cd(project_dir):

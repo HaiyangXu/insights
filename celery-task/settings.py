@@ -15,14 +15,19 @@ CELERY_IMPORTS = ('tasks', )
 CELERYBEAT_SCHEDULE = {
     # Executes every Day morning at 7:30 A.M
     'add-every-day-morning': {
-        'task': 'tasks.testschedule',
+        'task': 'tasks.addToQueue',
         'schedule': crontab(hour=7, minute=30 ),
-        'args': (16, 16),
+        'args': (),
+    },
+    'add-every-day-noon': {
+        'task': 'tasks.addToQueue',
+        'schedule': crontab(hour=13, minute=30 ),
+        'args': (),
     },
         'add-every-day-night': {
-        'task': 'tasks.testschedule',
+        'task': 'tasks.addToQueue',
         'schedule': crontab(hour=19, minute=30 ),
-        'args': (16, 16),
+        'args':(),
     },
 }
 

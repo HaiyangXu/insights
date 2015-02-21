@@ -21,7 +21,7 @@ def grabrss(rss_url):
     db.session.commit()
     
 @celery.task
-def addTo():
+def addToQueue():
     for feed in models.Feeds.query.all():
         grabrss.delay(feed.url)
 
