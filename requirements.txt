@@ -24,3 +24,4 @@ gunicorn
 python-dateutil==1.5
 Flask-Restless
 fabric
+virtualenvwrapper
