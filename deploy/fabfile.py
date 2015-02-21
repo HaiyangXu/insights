@@ -42,7 +42,7 @@ def celery_broker():
         
 def celery_worker():
      with cd(project_dir+'/celery-task'):
-        run('sh celery-task/worker.sh')
+        run('bash worker.sh')
         
 def celery_monitor():
      with cd(project_dir):
