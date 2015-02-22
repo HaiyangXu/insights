@@ -58,10 +58,13 @@ def ls(directory='~/'):
         
         
 def update():
+    """
+    Update code to github and pull code on remote host
+    """
     github()
-    git()
+    pull()
     
-def git():
+def pull():
     with cd(project_dir):
         run('git reset --hard')
         run('git pull')
