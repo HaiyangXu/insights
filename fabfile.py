@@ -55,6 +55,12 @@ def ls(directory='~/'):
     print(green("I'm local {0}".format(directory)))
     with cd('{0}'.format(directory)):
         run('ls -l')
+        
+        
+def update():
+    github()
+    git()
+    
 def git():
     with cd(project_dir):
         run('git reset --hard')
