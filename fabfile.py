@@ -99,7 +99,10 @@ def celery_worker():
 def celery_monitor():
      with cd(project_dir):
         sudo('supervisorctl start celerymonitor')
-        
+def testnginx():
+    update()
+    nginx()
+    
 def celery():
     celery_broker()
     celery_worker()
