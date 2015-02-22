@@ -7,8 +7,12 @@ env.hosts=['aws.codeidea.cn']
 # env.password='xxxxxx'
 #env.key_filename = "~/.ssh/id_rsa"
 env.key_filename = './amazon.pem'
-project_dir='~/insights'
-virtual_dir='.virtualenv'
+project_dir=os.path.abspath('~/www')
+try:
+    run('mkdir {directory}'.format(directory=project_dir))
+except Exception, e:
+    pass
+virtual_dir='.'
 
 def cmd(commd):
     run(commd)
@@ -23,16 +27,28 @@ def create_virtual():
     with cd(project_dir):
         run('virtualenv '+virtual_dir)
         virtualrun('pip install -r requirements.txt')
+        
+def getVirtualPath():
+    return os.path.join(project_dir,virtual_dir,'bin','')
 
 def virtualrun(command):
     """
-    Run a command in the virtualenv. This prefixes the command with the source
-    command.
+    Run a command in the virtualenv. This prefixes the command with the virtualenv path.
     Usage:
-        virtualenv('pip install django')
+        virtualrun('pip install django')
     """
-    source = 'source {proj}/{virtual}/bin/activate && '.format(proj=project_dir,virtual=virtual_dir)
-    run(source + command)
+    path =getVirtualPath()
+    run(path + strip(command))
+    
+def virtualsrun(command):
+    """
+    Run a command as sudo in the virtualenv. This prefixes the command with the virtualenv path.
+    Usage:
+        virtualrun('pip install django')
+    """
+    path =getVirtualPath()
+    srun(path + strip(command))
+    
  
 def ls(directory='~/'):
     print(green("I'm local {0}".format(directory)))

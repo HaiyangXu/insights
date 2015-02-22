@@ -1,6 +1,12 @@
-venv
 *.pyc
 .c9
 db
 celerybeat-schedule
 *.pem
+
+#virtualenv 
+bin/*
+lib/*
+include/*
+local/*
+*.log
