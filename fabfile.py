@@ -7,13 +7,14 @@ env.hosts=['aws.codeidea.cn']
 # env.password='xxxxxx'
 #env.key_filename = "~/.ssh/id_rsa"
 env.key_filename = './amazon.pem'
-project_dir=os.path.abspath('~/www')
-try:
-    run('mkdir {directory}'.format(directory=project_dir))
-except Exception, e:
-    pass
+project_dir='~/www'
 virtual_dir='.'
-
+def mkdir():
+    try:
+        run('mkdir {directory}'.format(directory=project_dir))
+    except Exception, e:
+        pass
+    
 def cmd(commd):
     run(commd)
     
@@ -38,7 +39,7 @@ def virtualrun(command):
         virtualrun('pip install django')
     """
     path =getVirtualPath()
-    run(path + strip(command))
+    run(path + command.strip())
     
 def virtualsrun(command):
     """
@@ -61,7 +62,7 @@ def git():
         
 def nginx():
     with cd('/etc/nginx/sites-enabled'):
-        sudo('ln -s -f  ~/insights/nginx.conf ')
+        sudo('ln -s -f  ~/www/nginx.conf ')
         sudo('/etc/init.d/nginx reload')
         
 def gunicorn():
@@ -73,6 +74,10 @@ def github(message='commit with fabric'):
         local('git add -A')
         local('git commit -m "{0}" '.format(message))
         local('git push origin master')
+
+def supervisor():
+    with cd(project_dir):
+        sudo('supervisord -c supervisord.conf')
         
 def celery_broker():
     with cd(project_dir):
