@@ -14,26 +14,23 @@ def grabrss(rss_url):
     res= robot.grabrss(rss_url)
     for item in res:
         title=item['title']
-        linkv =item['link']
-        feed = models.FeedsItem(title=title,link=linkv)
-        db.session.add(feed)
+        link=item['link']
+        feeditem = models.FeedsItem(title=title,link=link)
+        db.session.add(feeditem)
         
     db.session.commit()
     
 @celery.task
 def addToQueue():
     for feed in models.Feeds.query.all():
-        grabrss.delay(feed.url)
+        if feed.rss :
+            grabrss.delay(feed.rss)
 
 @celery.task
 def add(x,y):
     print x+y
     return x+y
     
-@celery.task
-def testschedule(a,b):
-    for i in range(100):
-        addTo.delay()
 
 if __name__=='__main__':
     pass
