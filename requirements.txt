@@ -2,6 +2,7 @@ Flask==0.10.1
 Flask-Admin
 Flask-SQLAlchemy==2.0
 Flask-Script==2.0.5
+Flask-Wtf
 Jinja2==2.7.3
 MarkupSafe==0.23
 SQLAlchemy==0.9.8
