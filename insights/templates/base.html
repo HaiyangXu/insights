@@ -16,7 +16,7 @@
 
    </head>
    <body>
-     
+    <a href="/addfeeds"> 添加Feeds</a>
     <hr>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -27,6 +27,8 @@
     </ul>
     {% endif %}
     {% endwith %}
+    
+    <hr>
     {% block content %}{% endblock %}
       <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
       <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>

@@ -11,8 +11,9 @@ class User(db.Model):
         
 class Feeds(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.Unicode(200), unique=True)
+    title = db.Column(db.Unicode(200))
     url = db.Column(db.String(200), unique=True)
+    rss = db.Column(db.String(200))
     date = db.Column(db.Date)
 
     def __repr__(self):
@@ -20,9 +21,9 @@ class Feeds(db.Model):
         
 class FeedsItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title= db.Column(db.Unicode(200), unique=True)
+    title= db.Column(db.Unicode(200))
     link = db.Column(db.String(200), unique=True)
-    des = db.Column(db.Unicode, unique=True)
+    des = db.Column(db.Unicode)
     date = db.Column(db.Date)
     hits = db.Column(db.Integer)
         

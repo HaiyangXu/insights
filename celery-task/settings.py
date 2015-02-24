@@ -21,7 +21,7 @@ CELERYBEAT_SCHEDULE = {
     },
     'add-every-day-noon': {
         'task': 'tasks.addToQueue',
-        'schedule': crontab(hour=13, minute=30 ),
+        'schedule': crontab(hour=12, minute=30 ),
         'args': (),
     },
         'add-every-day-night': {

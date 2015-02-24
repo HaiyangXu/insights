@@ -1,0 +1,34 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>添加Feeds</h1>
+<form action="" method="post" name="feeds">
+    {{form.hidden_tag()}}
+    <p>
+        标题：
+        {{form.title(size=80)}}
+        {% for error in form.errors.title %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        URL：
+        {{form.url(size=80)}}
+        {% for error in form.errors.url %}
+        <span style="color: red;">[{{error}}]</span> 
+        {% endfor %}
+
+    </p>
+    <p>
+        RSS：
+        {{form.rss(size=80)}}
+        {% for error in form.errors.rss %}
+        <span style="color: red;">[{{error}}]</span>
+        {% endfor %}
+
+    </p>
+    <p><input type="submit" value="提交"></p>
+</form>
+{% endblock %}
