@@ -3,11 +3,11 @@ from fabric.api import *
 from fabric.colors import *
 from fabric.context_managers import *
 import os
-env.hosts=['aws.codeidea.cn']
+env.hosts=['52.74.25.58']
 # env.password='xxxxxx'
 #env.key_filename = "~/.ssh/id_rsa"
 env.key_filename = './amazon.pem'
-project_dir='~/www'
+project_dir='~/app'
 virtual_dir='.'
 def mkdir():
     try:

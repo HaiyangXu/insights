@@ -23,7 +23,7 @@ class FeedsItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title= db.Column(db.Unicode(200))
     link = db.Column(db.String(200), unique=True)
-    des = db.Column(db.Unicode)
+    des = db.Column(db.Unicode(500))
     date = db.Column(db.Date)
     hits = db.Column(db.Integer)
         
