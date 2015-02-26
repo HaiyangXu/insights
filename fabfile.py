@@ -87,10 +87,14 @@ def github(message='commit with fabric'):
 def supervisor():
     with cd(project_dir):
         sudo('supervisord -c supervisord.conf')
-        
+def supervisor_reload():
+    with cd(project_dir):
+        sudo('supervisorctl reload -c supervisord.conf')
+    
 def celery_broker():
     with cd(project_dir):
         sudo('supervisorctl start celerybroker')
+
         
 def celery_worker():
      with cd(project_dir):
