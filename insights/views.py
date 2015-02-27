@@ -21,6 +21,7 @@ def addfeeds():
         flash('Add feeds Successed!  Title=' + form.title.data + ', Url=' + form.url.data)
         feed=models.Feeds()
         feed.title=form.title.data
+        print feed.title
         feed.url=form.url.data
         feed.rss=form.rss.data
         db.session.add(feed)

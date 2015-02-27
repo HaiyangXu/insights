@@ -71,7 +71,7 @@ def pull():
         
 def nginx():
     with cd('/etc/nginx/sites-enabled'):
-        sudo('ln -s -f  ~/www/nginx.conf ')
+        sudo('ln -s -f  {0}/nginx.conf '.format(project_dir))
         sudo('/etc/init.d/nginx reload')
         
 def gunicorn():
@@ -112,9 +112,13 @@ def celery():
     celery_worker()
     celery_monitor()
     
-      
+def clone():
+    with cd(project_dir):
+        run('git clone https://github.com/HaiyangXu/insights.git .')
 def deploy():
-    git()
+    #mkdir()
+    
+    pull()
     nginx()
     gunicorn()
     celery()
