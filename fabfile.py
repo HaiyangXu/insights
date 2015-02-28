@@ -87,6 +87,7 @@ def nginx():
 
 def supervisor():
     with cd(project_dir):
+        sudo('killall -r supervisor')
         sudo('supervisord -c supervisord.conf')
 def supervisor_reload():
     with cd(project_dir):
@@ -141,8 +142,8 @@ def deploy():
     with cd(_REMOTE_BASE_DIR):
         sudo('rm -f www')
         sudo('ln -s %s www' % newdir)
-        #sudo('chown www-data:www-data www')
-        #sudo('chown -R www-data:www-data %s' % newdir)
+        sudo('chown www-data:www-data www')
+        sudo('chown -R www-data:www-data %s' % newdir)
     # 重启Python服务和nginx服务器:
     nginx()
     supervisor_reload()
@@ -159,7 +160,11 @@ def update():
     Update code to github and pull code on remote host
     """
     github()
-    pull()        
+    pull()
+    
+def upload():
+    build()
+    deploy()
         
 def testnginx():
     update()
