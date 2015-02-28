@@ -15,7 +15,7 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(dbdir, 'data.db')
 #SQLALCHEMY_DATABASE_URI ='postgresql://dbfqwmlqiopsfo:OpXfSaGk3mqoqbLz9HRRI9DX0z@ec2-54-204-45-65.compute-1.amazonaws.com:5432/db07o0s1t78g8i'
 SQLALCHEMY_MIGRATE_REPO = os.path.join(dbdir, 'db_repository')
 
-
+DEBUG=True
 CSRF_ENABLED = True
 SECRET_KEY = 'you-will-never-guess'
 # produce environment
