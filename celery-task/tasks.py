@@ -17,8 +17,10 @@ def grabrss(rss_url):
         link=item['link']
         feeditem = models.FeedsItem(title=title,link=link)
         db.session.add(feeditem)
-        
-    db.session.commit()
+    try:
+        db.session.commit()
+    except Exception, e:
+        db.session.rollback()
     
 @celery.task
 def addToQueue():

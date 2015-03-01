@@ -27,6 +27,7 @@ def addfeeds():
             db.session.commit()
             flash('Add feeds Successed!  Title=' + form.title.data + ', Url=' + form.url.data)
         except Exception, e:
+            db.session.rollback()
             flash("Exception !")
             
     return render_template('addfeeds.html',
