@@ -1,9 +1,76 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
-{% for post in posts %}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-9">
+
+            <div class="panel">
+                <div class="panel-body">
+
+                    {% for post in posts %}
+                    <!--/stories-->
+                    <div class="row">
+                        <br>
+                        <div class="col-md-2 col-sm-3 text-center hide">
+                            <a class="story-img" href="#"><img src="//placehold.it/100" style="width:100px;height:100px" class="img-circle">
+                            </a>
+                        </div>
+                        <div class="col-md-10 col-sm-9">
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <a href="{{post.link}}">
+                                        <!--/title-->
+                                        <h3>{{post.title}}</h3>
+                                    </a>
+                                    <!--/descriptions-->
+                                    <p class=" "> {{post.descriptions}} </p>
+
+                                    <p class="lead">
+                                        <button class="btn btn-default hide">Read More</button>
+                                    </p>
+                                    <p class="pull-right hide"><span class="label label-default">keyword</span> <span class="label label-default">tag</span> <span class="label label-default">post</span>
+                                    </p>
+                                    <ul class="list-inline">
+                                        <li><a href="#">{{post.date}}</a>
+                                        </li>
+                                        <li><a href="#">{{post.author}}</a>
+                                        </li>
+                                        <li><a href="#"><i class="glyphicon glyphicon-comment"></i> 4 </a>
+                                        </li>
+                                        <li><a href="#"><i class="glyphicon glyphicon-share"></i> 34 </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <!--
+              <br><br>
+              -->
+                        </div>
+                    </div>
+                    <hr>
+
+
+                    <!--/stories-->
+                    {% endfor %}
+
+                    <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <!--/col-12-->
+    </div>
+</div>
+
 <ul>
-    <a href="{{post.link}}">{{post.title}}</a>
+
 </ul>
-{% endfor %}
+
 {% endblock %}

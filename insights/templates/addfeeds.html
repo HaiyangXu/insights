@@ -3,32 +3,42 @@
 
 {% block content %}
 
+
 <h1>添加Feeds</h1>
-<form action="" method="post" name="feeds">
+<form action="" method="post" name="feeds" class="form-horizontal" role="form">
     {{form.hidden_tag()}}
-    <p>
-        标题：
-        {{form.title(size=80)}}
-        {% for error in form.errors.title %}
+   <div class="form-group">
+      <label for="title" class="col-sm-2 control-label">标题</label>
+      <div class="col-sm-10">
+          {{form.title(size=80)}}
+           {% for error in form.errors.title %}
         <span style="color: red;">[{{error}}]</span>
         {% endfor %}
-    </p>
-    <p>
-        URL：
-        {{form.url(size=80)}}
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="url" class="col-sm-2 control-label">URL</label>
+      <div class="col-sm-10">
+          {{form.url(size=80)}}
         {% for error in form.errors.url %}
         <span style="color: red;">[{{error}}]</span> 
         {% endfor %}
-
-    </p>
-    <p>
-        RSS：
-        {{form.rss(size=80)}}
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="rss" class="col-sm-2 control-label">RSS</label>
+      <div class="col-sm-10">
+          {{form.rss(size=80)}}
         {% for error in form.errors.rss %}
         <span style="color: red;">[{{error}}]</span>
         {% endfor %}
-
-    </p>
-    <p><input type="submit" value="提交"></p>
+      </div>
+   </div>
+   <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+         <button type="submit" class="btn btn-default">提交</button>
+      </div>
+   </div>
 </form>
+
 {% endblock %}

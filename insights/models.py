@@ -21,10 +21,12 @@ class Feeds(db.Model):
         
 class FeedsItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    author= db.Column(db.Unicode(200))
+    feed_id=db.Column(db.Integer, db.ForeignKey('feeds.id'))
     title= db.Column(db.Unicode(200))
     link = db.Column(db.String(200), unique=True)
     des = db.Column(db.Unicode(500))
-    date = db.Column(db.Date)
+    date = db.Column(db.DateTime)
     hits = db.Column(db.Integer)
         
     def __repr__(self):

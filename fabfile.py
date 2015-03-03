@@ -126,6 +126,7 @@ def build():
 _REMOTE_TMP_TAR = '/tmp/%s' % _TAR_FILE
 _REMOTE_BASE_DIR = '/home/ubuntu/'
 
+
 def deploy():
     newdir = 'www-%s' % datetime.now().strftime('%y-%m-%d_%H.%M.%S')
     # 删除已有的tar文件:
@@ -134,6 +135,7 @@ def deploy():
     put('../dist/%s' % _TAR_FILE, _REMOTE_TMP_TAR)
     # 创建新目录:
     with cd(_REMOTE_BASE_DIR):
+        #sudo('rm -rf www* ')
         sudo('mkdir %s' % newdir)
     # 解压到新目录:
     with cd('%s/%s' % (_REMOTE_BASE_DIR, newdir)):
@@ -147,7 +149,11 @@ def deploy():
     # 重启Python服务和nginx服务器:
     nginx()
     supervisor_reload()
-        
+    addToQueue()
+
+def addToQueue():
+    with cd('/home/ubuntu/www/celery-task'):
+        run('/home/ubuntu/env/bin/python restart.py')
 #shotcut commd 
 def cmd(commd):
     run(commd)

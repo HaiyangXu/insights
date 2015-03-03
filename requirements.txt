@@ -6,7 +6,7 @@ Flask-Wtf
 Jinja2==2.7.3
 MarkupSafe==0.23
 SQLAlchemy==0.9.8
-sqlalchemy-migrate
+Flask-migrate
 mysql-python
 psycopg2
 Werkzeug

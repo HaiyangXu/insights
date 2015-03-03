@@ -1,12 +1,24 @@
 from flask import render_template, flash, redirect
-from insights import app,db,models,forms
+from insights import app,db,forms
+from insights.models import *
 
 
 @app.route('/')
 @app.route('/index')
 def index():
     user = { 'nickname': 'Miguel' }
-    feeds=[{'title':item.title,'link':item.link} for item in models.FeedsItem.query.all()]
+    feeds=[
+        {
+            'title':feedsitem.title,
+            'link':feedsitem.link,
+            'descriptions':feedsitem.des ,
+            'date':feedsitem.date,
+            'hits':feedsitem.hits,
+            'author':feeds.title,
+            
+        }
+        for feedsitem,feeds in db.session.query(FeedsItem,Feeds).join(Feeds).all()
+        ]
     return render_template('index.html',
         title = 'Home',
         user = user,
@@ -39,3 +51,8 @@ def login():
     return render_template('login.html',
         title = 'Sign In',
         form = form)
+        
+@app.route('/test')
+def test():
+    return render_template('test.html')
+        
