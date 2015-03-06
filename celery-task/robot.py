@@ -4,6 +4,7 @@ import feedparser
 import re
 from datetime import datetime
 from insights import models,db
+from HTMLParser import HTMLParser
 
 description_size=200
 
@@ -20,11 +21,12 @@ def grabrss(rss_url,feed_id):
     feed_data = feedparser.parse(rss_url)
     channel,items =feed_data.feed,feed_data.entries
     count=0
+    html_parser = HTMLParser()
     for item in items:
         feeditem = models.FeedsItem(
-            title=item.title,
+            title=html_parser.unescape(item.title),
             link=item.link,
-            des=striphtml(item.description),
+            des=html_parser.unescape(striphtml(item.description)),
             feed_id=feed_id,
             date=datetime.now()
             )
