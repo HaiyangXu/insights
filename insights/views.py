@@ -12,7 +12,7 @@ def index():
             'title':feedsitem.title,
             'link':feedsitem.link,
             'descriptions':feedsitem.des ,
-            'date':feedsitem.date,
+            'date':feedsitem.date.strftime('%m-%d %H:%M '),
             'hits':feedsitem.hits,
             'author':feeds.title,
             
