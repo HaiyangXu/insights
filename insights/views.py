@@ -17,7 +17,7 @@ def index():
             'author':feeds.title,
             
         }
-        for feedsitem,feeds in db.session.query(FeedsItem,Feeds).join(Feeds).all()
+        for feedsitem,feeds in db.session.query(FeedsItem,Feeds).join(Feeds).order_by(FeedsItem.date.desc()).all()
         ]
     return render_template('index.html',
         title = 'Home',
