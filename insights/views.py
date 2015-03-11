@@ -1,7 +1,10 @@
 from flask import render_template, flash, redirect, request ,url_for
 from insights import app,db,forms,models
 from insights.models import *
-import feedparser
+import feedparser,requests,os
+
+port=os.getenv('PORT', 8000)
+ip=os.getenv('IP','0.0.0.0')
 
 @app.route('/')
 @app.route('/index')
@@ -76,7 +79,25 @@ def login():
         title = 'Sign In',
         form = form)
         
+scroll_index_url="http://%s:%s/api/feeds_item?page=1"%(ip,port)
+@app.route('/scroll_index')
+def scroll_index():
+    feeds=[
+        {
+            'title':feedsitem.title,
+            'link':feedsitem.link,
+            'descriptions':feedsitem.des ,
+            'date':feedsitem.date.strftime('%m-%d %H:%M '),
+            'hits':feedsitem.hits,
+            'author':feeds.title,
+            
+        }
+        for feedsitem,feeds in db.session.query(FeedsItem,Feeds).join(Feeds).limit(10).all()
+        ]
+    print feeds
+    return render_template('scroll_index.html',posts=feeds)
+    
 @app.route('/test')
 def test():
-    return render_template('test.html')
+    return render_template('scroll_index.html',data='')
         
